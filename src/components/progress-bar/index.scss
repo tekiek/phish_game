@@ -1,0 +1,30 @@
+.progressBarWrapper {
+	clear: both;
+  margin: 0 0 20px;
+} 
+
+.textSongCount {
+	color: #939DC5;
+  padding: 10px 0 0;
+  margin-bottom: 10px;
+  display: inline-block;
+  text-align: left;
+}
+
+.textScoreCount {
+	color: #939DC5;
+  padding: 10px 0 0;
+  margin-bottom: 10px;
+  display: inline-block;
+  float: right;
+}
+
+.progressBarBorder {
+	border: 1px solid #939DC5;
+	border-radius: 3px;
+}
+
+.progressBarFill {
+	height: 12px;
+	background: #939DC5;
+}

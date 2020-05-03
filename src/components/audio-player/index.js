@@ -1,13 +1,20 @@
 import React from 'react';
 import ReactAudioPlayer from 'react-audio-player';
+import '../../css/solid.css';
 
-function AudioPlayer({track}) {
-
+function AudioPlayer({
+	propData,
+	appData,
+}) {
   return (
-    <ReactAudioPlayer
-		  src={track}
-		  autoPlay
-		/>
+  	<div>
+  		{ appData.track && 
+		    <ReactAudioPlayer
+				  src={appData.track}
+				  autoPlay
+				/>
+			}
+		</div>
   );
 }
 

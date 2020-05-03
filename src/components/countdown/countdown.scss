@@ -1,0 +1,58 @@
+.timerWrapper {
+  display: inline-block;
+	text-align: center;
+	position: relative;
+  margin: auto;
+  height: 100px;
+  width: 100px;
+  text-align: center;
+}
+
+.timerText {
+	position: absolute;
+	font-size: 48px;
+	color: #939DC5;
+  top: 10px;
+  left: 0px;
+  text-align:center;
+  width: 100px;
+}
+
+.countdownSvg  {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 100px;
+  height: 100px;
+  transform: rotateY(-180deg) rotateZ(-90deg);
+}
+
+.countdownSvg circle {
+  stroke-dasharray: 240px;
+  stroke-dashoffset: 0px;
+  stroke-linecap: round;
+  stroke-width: 3px;
+  stroke: #939DC5;
+  fill: none;
+}
+
+.countdownSvg circle.go {
+	animation: countdown 30s linear infinite forwards;
+	animation-play-state: running;
+}
+
+.countdownSvg circle.stop {
+	animation: none;
+	xanimation: countdown 30s linear infinite forwards;
+	xanimation-play-state: paused;
+}
+
+
+@keyframes countdown {
+  from {
+    stroke-dashoffset: 0px;
+  }
+  to {
+    stroke-dashoffset: 240px;
+  }
+}
