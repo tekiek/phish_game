@@ -11,6 +11,7 @@ function fetchTrack(appData, propData) {
 	    const answers = generateYears(trackYear);
 
 	    console.log('rndTrack', rndTrack);
+	    console.log('trackYear', trackYear);
 
 	    propData({
 	    	track: rndTrack.mp3, 
