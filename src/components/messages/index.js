@@ -3,7 +3,7 @@ import './index.scss';
 
 function Messages({
   appData,
-  startSong,
+  loadSong,
 }) {
   let header = '';
   let subheader = '';
@@ -31,10 +31,10 @@ function Messages({
         <div className="xs-text-3">{subheader}</div>
       }
       {startGameButton && 
-        <button onClick={startSong} className="messageButton button xs-my3">Start Game</button>
+        <button onClick={loadSong} className="messageButton button xs-my3">Start Game</button>
       }
       {nextSongButton && 
-        <button onClick={startSong} className="messageButton button xs-my3">Next Song</button>
+        <button onClick={loadSong} className="messageButton button xs-my3">Next Song</button>
       }
     </div>
   );

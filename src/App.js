@@ -16,8 +16,9 @@ function App() {
   const [appData, setAppData] = useState({
     score: 0,
     songCount: 0,
-    clock: songLength,
+    clock: 0,
     track: null,
+    isPlaying: false,
     answers: [],
     answer: null,
     selected: null,
@@ -26,10 +27,19 @@ function App() {
 
   // Countdown Clock
   useEffect(() => {
-    if (typeof appData.clock === 'number' && appData.track !== null ) {
+    console.log('~~~~~ useEffect ~~~~~~');
+    console.log('appData.clock', appData.clock);
+    console.log('appData.track', appData.track);
+    console.log('appData.isPlaying', appData.isPlaying);
+    if (typeof appData.clock === 'number' 
+      && appData.track !== null 
+      && appData.isPlaying === true ) 
+    {
       if (appData.clock === 0) {
+        console.log('~~~~~ useEffect ~~~~~~', 'stopSong');
         stopSong();
       } else {
+        console.log('~~~~~ useEffect ~~~~~~', 'countdown');
         timer = setTimeout(() => {
           dataCollection({clock: appData.clock - 1});
         }, 1000);
@@ -49,11 +59,14 @@ function App() {
   function stopSong() {
     console.log('stopSong!')
     clearTimeout(timer);
-    dataCollection({track: null});
+    dataCollection({
+      track: null,
+      isPlaying: false,
+    });
   }
 
-  function startSong() {
-    stopSong();
+  function loadSong() {
+    clearTimeout(timer);
     fetchTrack(appData, dataCollection);
   }
 
@@ -87,7 +100,7 @@ function App() {
     return Math.round(roundScore);
   }
 
-  //console.log('appData', appData);
+  console.log('appData', appData);
 
   return (
     <div className="col xs-p1 md-p0 xs-col-12 md-col-6 md-offset-3">  
@@ -100,13 +113,16 @@ function App() {
         <Score score={appData.score} />
       </div>
       <ProgressBar songCount={appData.songCount} />
+      <Messages 
+        appData={appData} 
+        loadSong={loadSong}
+      />
       { appData.track && 
         <AudioPlayer 
           appData={appData} 
           propData={dataCollection} 
         />
       }
-      <Messages appData={appData} startSong={startSong}/>
       <div className="dottedLine"></div>
       <div className="col xs-col-12">
         {appData.answers.map(function(answer, key){

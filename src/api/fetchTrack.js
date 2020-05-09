@@ -3,6 +3,7 @@ import generateYears from './generateAnswers';
 const { apiPath, apiRequests } = require('./api');
 
 function fetchTrack(appData, propData) {
+	console.log(`${apiPath.dev}${apiRequests.random}`);
   axios.get(`${apiPath.dev}${apiRequests.random}`)
 	  .then(function(response) {
 	    const tracks = response.data.data.tracks;
@@ -12,9 +13,9 @@ function fetchTrack(appData, propData) {
 
 	    console.log('rndTrack', rndTrack);
 	    console.log('trackYear', trackYear);
-
 	    propData({
-	    	track: rndTrack.mp3, 
+	    	track: rndTrack.mp3,
+	    	isPlaying: false, 
 	    	clock: 30,
 	    	songCount: appData.songCount + 1,
 	    	answers: answers.sort(),
