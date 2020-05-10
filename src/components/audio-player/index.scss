@@ -11,4 +11,9 @@
 	svg > path {
 		fill: #939DC5;
 	}
+
+	&[aria-label=Pause] {
+		visibility: hidden;
+	}
 }
+

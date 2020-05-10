@@ -27,19 +27,14 @@ function App() {
 
   // Countdown Clock
   useEffect(() => {
-    console.log('~~~~~ useEffect ~~~~~~');
-    console.log('appData.clock', appData.clock);
-    console.log('appData.track', appData.track);
-    console.log('appData.isPlaying', appData.isPlaying);
-    if (typeof appData.clock === 'number' 
+    if (
+      typeof appData.clock === 'number' 
       && appData.track !== null 
       && appData.isPlaying === true ) 
     {
       if (appData.clock === 0) {
-        console.log('~~~~~ useEffect ~~~~~~', 'stopSong');
         stopSong();
       } else {
-        console.log('~~~~~ useEffect ~~~~~~', 'countdown');
         timer = setTimeout(() => {
           dataCollection({clock: appData.clock - 1});
         }, 1000);
@@ -57,7 +52,6 @@ function App() {
   }
 
   function stopSong() {
-    console.log('stopSong!')
     clearTimeout(timer);
     dataCollection({
       track: null,
@@ -78,6 +72,7 @@ function App() {
       selected: selected,
       track: null,
       score: tempScore,
+      isPlaying: false,
     });
   }
 

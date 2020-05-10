@@ -11,16 +11,19 @@ function Messages({
   let nextSongButton = false;
 
 
-  if (!appData.selected && !appData.track) {
+  if (appData.songCount == 0) {
     header = 'Lorem ipsum!';
     startGameButton = true;
-  } else if (!appData.selected && appData.track) {
-    header = 'What Year Did Phish Play This Song?';
-  }
-  else if (appData.selected) {
-    header = appData.answer === appData.selected ? 'Correct!' : 'Wrong!';
-    subheader = appData.trackData.title + ' - ' + appData.trackData.show_date;
-    nextSongButton = true;
+  } else if (appData.songCount <= 3) {
+    if (!appData.selected) {
+      header = 'What Year Did Phish Play This Song?';
+    } else {
+      header = appData.answer === appData.selected ? 'Correct!' : 'Wrong!';
+      subheader = appData.trackData.title + ' - ' + appData.trackData.show_date;
+      nextSongButton = true;
+    }
+  } else {
+    header = 'Game Over!';
   }
 
   return (
