@@ -1,5 +1,5 @@
 const apiPath = {
-	dev: 'http://phishgame.com/api/phishin/'
+	dev: 'https://phishgame.com/api/phishin/'
 }
 
 const apiRequests = {

@@ -13,7 +13,6 @@ function Messages({
 
   if (!appData.selected && !appData.track) {
     header = 'Lorem ipsum!';
-    //subheader = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
     startGameButton = true;
   } else if (!appData.selected && appData.track) {
     header = 'What Year Did Phish Play This Song?';
@@ -28,7 +27,7 @@ function Messages({
     <div className="messagesWrapper text-white xs-text-center">
       <div className="xs-text-1">{header}</div>
       {subheader && 
-        <div className="xs-text-3">{subheader}</div>
+        <div className="xs-text-4 xs-mt1">{subheader}</div>
       }
       {startGameButton && 
         <button onClick={loadSong} className="messageButton button xs-my3">Start Game</button>

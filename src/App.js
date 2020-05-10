@@ -90,7 +90,7 @@ function App() {
     } else {
       let yearDifference = Math.abs(selected - appData.answer);;
 
-      if (yearDifference <= 3) {
+      if (yearDifference <= 4) {
         roundScore += 10 * yearDifference;
         roundScore += appData.clock * .5;
       }
@@ -108,7 +108,7 @@ function App() {
         <SongCount songCount={appData.songCount} />
         <Countdown
           appData={appData}
-          action={appData.track ? 'go' : 'stop'}
+          action={appData.isPlaying ? 'go' : 'stop'}
         />
         <Score score={appData.score} />
       </div>
@@ -125,7 +125,7 @@ function App() {
       }
       <div className="dottedLine"></div>
       <div className="col xs-col-12">
-        {appData.answers.map(function(answer, key){
+        {appData.answers.map(function(answer, key) {
           return <AnswerButton appData={appData} key={Math.random()} answerText={answer} propAnswer={answerSelected}/>;
         })} 
       </div>
