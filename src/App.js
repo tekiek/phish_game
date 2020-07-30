@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import AudioPlayer from './components/audio-player/index';
+import Top from './components/top';
+import Middle from './components/middle';
+import Bottom from './components/bottom';
 import fetchTrack from './api/fetchTrack';
-import SongCount from './components/song-count';
-import Countdown from './components/countdown';
-import Score from './components/score';
-import ProgressBar from './components/progress-bar';
-import Messages from './components/messages';
-import AnswerButton from './components/answer-button/index';
 import './App.scss';
 import './css/solid.css';
+import './css/animate.css';
 
 const songLength = 30;
 
@@ -22,8 +19,21 @@ function App() {
     answers: [],
     answer: null,
     selected: null,
+    debug: false,
+    bonus: [],
   });
   let timer;
+
+
+  useEffect(() => {
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('debug')) {
+        dataCollection({debug: true});
+        console.log('debug mode');
+      }
+    } catch (err) {}
+  }, []);
 
   // Countdown Clock
   useEffect(() => {
@@ -65,7 +75,8 @@ function App() {
   }
 
   function answerSelected(selected) {
-    let tempScore = appData.score + updatedScore(selected);
+    let tempScore = appData.score + updatedScore(selected)['score'];
+    let bonus = updatedScore(selected)['bonus'];
 
     clearTimeout(timer);
     dataCollection({
@@ -73,58 +84,52 @@ function App() {
       track: null,
       score: tempScore,
       isPlaying: false,
+      bonus: bonus,
     });
   }
 
   function updatedScore(selected) {
     let roundScore = 0;
+    let bonus = [];
 
     if (selected === appData.answer) {
       roundScore += 100;
       roundScore += appData.clock * 3;
+      bonus.push('Time Bonus');
+      bonus.push('Poop');
     } else {
       let yearDifference = Math.abs(selected - appData.answer);;
 
       if (yearDifference <= 4) {
+        bonus.push('Wrong but close');
         roundScore += 10 * yearDifference;
         roundScore += appData.clock * .5;
       }
     }
 
     console.log('roundScore', roundScore);
-    return Math.round(roundScore);
+    return {
+      score: Math.round(roundScore),
+      bonus: bonus
+    }
   }
 
   console.log('appData', appData);
 
   return (
-    <div className="col xs-p1 md-p0 xs-col-12 md-col-6 md-offset-3">  
-      <div className="xs-flex xs-flex-justify-space-between xs-my1">
-        <SongCount songCount={appData.songCount} />
-        <Countdown
-          appData={appData}
-          action={appData.isPlaying ? 'go' : 'stop'}
-        />
-        <Score score={appData.score} />
-      </div>
-      <ProgressBar songCount={appData.songCount} />
-      <Messages 
+    <div className="phish-game col xs-p1 md-p0 xs-col-12 md-col-6 md-offset-3">
+      <Top 
         appData={appData} 
-        loadSong={loadSong}
       />
-      { appData.track && 
-        <AudioPlayer 
-          appData={appData} 
-          propData={dataCollection} 
-        />
-      }
-      <div className="dottedLine"></div>
-      <div className="col xs-col-12">
-        {appData.answers.map(function(answer, key) {
-          return <AnswerButton appData={appData} key={Math.random()} answerText={answer} propAnswer={answerSelected}/>;
-        })} 
-      </div>
-
+      <Middle 
+        appData={appData} 
+        loadSong={loadSong} 
+        dataCollection={dataCollection} 
+      />
+      <Bottom 
+        appData={appData}
+        answerSelected={answerSelected}
+      />
     </div>
   );
 }

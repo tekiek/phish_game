@@ -27,16 +27,16 @@ function Messages({
   }
 
   return (
-    <div className="messagesWrapper text-white xs-text-center">
-      <div className="xs-text-1">{header}</div>
+    <div className="messagesWrapper xs-my1 md-my3 text-white xs-text-center">
+      <div className="xs-text-3 sm-text-2 md-text-1">{header}</div>
       {subheader && 
         <div className="xs-text-4 xs-mt1">{subheader}</div>
       }
       {startGameButton && 
-        <button onClick={loadSong} className="messageButton button xs-my3">Start Game</button>
+        <button onClick={loadSong} className="messageButton button xs-mt3">Start Game</button>
       }
       {nextSongButton && 
-        <button onClick={loadSong} className="messageButton button xs-my3">Next Song</button>
+        <button onClick={loadSong} className="messageButton button xs-mt3">Next Song</button>
       }
     </div>
   );

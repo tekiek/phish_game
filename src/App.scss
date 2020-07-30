@@ -1,5 +1,10 @@
+html, body {
+     height: 100%;
+}
+
 body {
   background: #252C4A;
+  //background-image: linear-gradient(to bottom, #E9D79F, #197BAC);
 }
 
 .header {
@@ -14,8 +19,16 @@ body {
 	display: block;
 }
 
+.middle {
+	height: 250px;
+	overflow: hidden;
+
+	@media only screen and (max-width: 832px) {
+ 		height: 150px;
+ 	}
+}
+
 .dottedLine {
 	width: 100%;
-	margin: 20px 0;
-	border: 1px dashed rgba(147,157,197,.2);
+	border: 1px solid #939DC5;
 }

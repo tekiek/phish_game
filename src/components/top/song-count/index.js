@@ -6,7 +6,7 @@ function SoungCount({
 }) {
   return (
 		<span className="textSongCount xs-text-3 md-text-2">
-			Song {songCount} / 10
+			Song: <span className="text-white">{songCount} / 10</span>
 		</span>
   );
 }

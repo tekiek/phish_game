@@ -1,0 +1,38 @@
+.rhap_container {
+	background: transparent;
+	box-shadow: none;
+	padding: 0px !important;
+}
+
+.rhap_progress-section {
+	display: none;
+}
+
+.rhap_stacked .rhap_controls-section {
+	margin-top: 0px;
+}
+
+.rhap_main-controls-button.rhap_play-pause-button {
+	width: 80px;
+	height: 80px; 
+
+	svg {
+		width: 2em;
+		height: 2em;
+	}
+
+	svg > path {
+		fill: #939DC5;
+	}
+
+	@media only screen and (max-width: 832px) {
+	  width: 60px;
+		height: 60px; 
+
+		svg {
+			width: 1.5em;
+			height: 1.5em;
+		}
+	}
+}
+

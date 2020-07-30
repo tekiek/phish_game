@@ -8,7 +8,7 @@ function Countdown({
 
   return (
   	<div className="timerWrapper">
-      <div className="timerText">{appData.clock}</div>
+      <div className="timerText text-white">{appData.clock}</div>
       <svg className="countdownSvg">
         <circle className={action} r="18" cx="20" cy="20" />
       </svg>

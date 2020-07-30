@@ -6,18 +6,22 @@ function AnswerButton({
 	propAnswer,
 	appData,
 }) {
-	let disabledClass =  '';
-	let buttonColor = 'button button--white ';
+	let disabledClass =  ' ';
+	let buttonColor = 'answerButton button selectable ';
+	let buttonAnimate = '';
 
 	if (appData.selected) {
 		if (appData.selected === answerText) {
 			if (appData.answer !== appData.selected) {
-				buttonColor = 'button button--negative ';
+				buttonColor = 'answerButton button button--negative ';
+				buttonAnimate = 'animate__animated animate__pulse ';
 			} else {
-				buttonColor = 'button ';
+				buttonColor = 'answerButton button button--sms ';
+				buttonAnimate = 'animate__animated animate__pulse ';
 			}
 		} else {
 			disabledClass = 'button--disabled ';
+			buttonAnimate = ' ';
 		}
 	} 
 
@@ -28,7 +32,7 @@ function AnswerButton({
   return (
   	<div 
   		onClick={appData.selected ? null : onClick} 
-  		className={disabledClass + buttonColor + '  col xs-col-12'}>
+  		className={disabledClass + buttonColor + buttonAnimate + ' col xs-col-12'}>
   		<p>{answerText}</p>
   	</div>
   );
